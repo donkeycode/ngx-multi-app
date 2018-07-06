@@ -3,12 +3,16 @@
     <h1>App 1</h1>
   </div>
   <div class="menu">
-    <ul>
-      <li *ngFor="let link of menu">
-        <a [attr.href]="link.link">{{ link.label }}</a>
-      </li>
-    </ul>
+    <div *ngFor="let link of menu">
+      <a [attr.href]="link.link" *ngIf="!link.loading">{{ link.label }}</a>
+      <div class="post" *ngIf="link.loading">
+        <div class="avatar"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
   </div>
   <div class="content">
+    <h1>Fetching menu from back</h1>
   </div>
 </div>

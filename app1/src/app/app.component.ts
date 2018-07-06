@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { menuWaitingFromBack, menuFetchedFromBack } from '../../../menu';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +8,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  public menu: any[] = [];
+  public menu: any[] = menuWaitingFromBack;
 
   constructor() {
-    this.menu = [
-      {
-        label: 'Lien vers App 2',
-        link: 'http://localhost:4100/'
-      }, {
-        label: 'Lien vers Jougle',
-        link: 'https://www.google.fr/'
-      }
-    ];
+    setTimeout(() => {
+      this.menu = menuFetchedFromBack;
 
-    const toStore = {
-      from: 'app1',
-      to: 'app2',
-      data: {
-        menu: this.menu
-      }
-    };
-    localStorage.setItem('multi-app', JSON.stringify(toStore));
+      const toStore = {
+        from: 'app1',
+        to: 'app2',
+        data: {
+          menu: this.menu
+        }
+      };
+      localStorage.setItem('multi-app', JSON.stringify(toStore));
+    }, 3000);
   }
 }

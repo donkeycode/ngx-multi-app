@@ -1,18 +1,27 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { menuWaitingFromBack, menuFetchedFromBack } from '../../../menu';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  public data = {};
+  public menu: any[] = menuWaitingFromBack;
 
   constructor() {
-    let storedData = localStorage.getItem('multi-app');
-    if (storedData) {
-      this.data = JSON.parse(storedData);
-    }
+    setTimeout(() => {
+      this.menu = menuFetchedFromBack;
+
+      const toStore = {
+        from: 'app1',
+        to: 'app2',
+        data: {
+          menu: this.menu
+        }
+      };
+      localStorage.setItem('multi-app', JSON.stringify(toStore));
+    }, 3000);
   }
 }
