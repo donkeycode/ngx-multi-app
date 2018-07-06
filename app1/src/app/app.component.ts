@@ -9,9 +9,11 @@ import { menuWaitingFromBack, menuFetchedFromBack } from '../../../menu';
 })
 export class AppComponent {
   public menu: any[] = menuWaitingFromBack;
+  public fetching: boolean = true;
 
   constructor() {
     setTimeout(() => {
+      this.fetching = false;
       this.menu = menuFetchedFromBack;
 
       const toStore = {

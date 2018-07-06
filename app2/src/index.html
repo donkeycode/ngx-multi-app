@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>App2</title>
-  <base href="/">
+  <base href="/app2/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="assets/grid.css">
 </head>
 <body>
   <app-root>
@@ -26,9 +27,27 @@
         </div>
       </div>
       <div class="content">
-        <h1>Loading Angular App 2</h1>
+        <h1>1. Loading Angular App 2</h1>
       </div>
     </div>
+    <script>
+    function init() {
+      let storedData = localStorage.getItem('multi-app');
+      if (!storedData) {
+        return;
+      }
+      storedData = JSON.parse(storedData);
+
+      let newHtml = '';
+      for (let link of storedData.data.menu) {
+        newHtml += '<div>';
+        newHtml += '<a href="' + link.link + '">' + link.label + '</a>';
+        newHtml += '</div>';
+      }
+      // document.getElementsByClassName('menu')[0].innerHTML = newHtml;
+    }
+    // init();
+    </script>
   </app-root>
 </body>
 </html>

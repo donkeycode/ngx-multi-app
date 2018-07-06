@@ -9,19 +9,26 @@ import { menuWaitingFromBack, menuFetchedFromBack } from '../../../menu';
 })
 export class AppComponent {
   public menu: any[] = menuWaitingFromBack;
+  public fetching: boolean = true;
 
   constructor() {
-    setTimeout(() => {
-      this.menu = menuFetchedFromBack;
-
-      const toStore = {
-        from: 'app1',
-        to: 'app2',
-        data: {
-          menu: this.menu
-        }
-      };
-      localStorage.setItem('multi-app', JSON.stringify(toStore));
-    }, 3000);
+    let storedData: any = localStorage.getItem('multi-app');
+    if (storedData) {
+      this.fetching = false;
+      storedData = JSON.parse(storedData);
+      this.menu = storedData.data.menu;
+    }
+    // setTimeout(() => {
+    //   this.menu = menuFetchedFromBack;
+    //
+    //   const toStore = {
+    //     from: 'app1',
+    //     to: 'app2',
+    //     data: {
+    //       menu: this.menu
+    //     }
+    //   };
+    //   localStorage.setItem('multi-app', JSON.stringify(toStore));
+    // }, 3000);
   }
 }

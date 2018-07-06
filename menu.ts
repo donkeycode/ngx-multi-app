@@ -8,10 +8,10 @@ export const menuWaitingFromBack = [
 
 export const menuFetchedFromBack = [
   {
-    label: 'Lien vers App 2',
-    link: 'http://localhost:4100/'
+    label: 'Lien vers App 1',
+    link: 'http://localhost/app1/'
   }, {
-    label: 'Lien vers Jougle',
-    link: 'https://www.google.fr/'
+    label: 'Lien vers App 2',
+    link: 'http://localhost/app2/'
   }
 ];
