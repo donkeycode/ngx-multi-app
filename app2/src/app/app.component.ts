@@ -17,18 +17,21 @@ export class AppComponent {
       this.fetching = false;
       storedData = JSON.parse(storedData);
       this.menu = storedData.data.menu;
+      return;
     }
-    // setTimeout(() => {
-    //   this.menu = menuFetchedFromBack;
-    //
-    //   const toStore = {
-    //     from: 'app1',
-    //     to: 'app2',
-    //     data: {
-    //       menu: this.menu
-    //     }
-    //   };
-    //   localStorage.setItem('multi-app', JSON.stringify(toStore));
-    // }, 3000);
+
+    setTimeout(() => {
+      this.fetching = false;
+      this.menu = menuFetchedFromBack;
+
+      const toStore = {
+        from: 'app1',
+        to: 'app2',
+        data: {
+          menu: this.menu
+        }
+      };
+      localStorage.setItem('multi-app', JSON.stringify(toStore));
+    }, 3000);
   }
 }

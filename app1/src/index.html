@@ -15,21 +15,41 @@
       <div class="header">
       </div>
       <div class="menu">
-        <div class="post">
-          <div class="avatar"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-        <div class="post">
-          <div class="avatar"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
       </div>
       <div class="content">
         <h1>1. Loading Angular App 1</h1>
       </div>
     </div>
+    <script>
+    function init() {
+      let storedData = localStorage.getItem('multi-app');
+      if (!storedData) {
+        let newHtml = '';
+        newHtml += '<div class="post">';
+          newHtml += '<div class="avatar"></div>';
+          newHtml += '<div class="line"></div>';
+          newHtml += '<div class="line"></div>';
+        newHtml += '</div>';
+        newHtml += '<div class="post">';
+          newHtml += '<div class="avatar"></div>';
+          newHtml += '<div class="line"></div>';
+          newHtml += '<div class="line"></div>';
+        newHtml += '</div>';
+        document.getElementsByClassName('menu')[0].innerHTML = newHtml;
+        return;
+      }
+      storedData = JSON.parse(storedData);
+
+      let newHtml = '';
+      for (let link of storedData.data.menu) {
+        newHtml += '<div>';
+        newHtml += '<a href="' + link.link + '">' + link.label + '</a>';
+        newHtml += '</div>';
+      }
+      document.getElementsByClassName('menu')[0].innerHTML = newHtml;
+    }
+    init();
+    </script>
   </app-root>
 </body>
 </html>

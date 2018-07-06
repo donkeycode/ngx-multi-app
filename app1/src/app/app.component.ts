@@ -12,6 +12,14 @@ export class AppComponent {
   public fetching: boolean = true;
 
   constructor() {
+    let storedData: any = localStorage.getItem('multi-app');
+    if (storedData) {
+      this.fetching = false;
+      storedData = JSON.parse(storedData);
+      this.menu = storedData.data.menu;
+      return;
+    }
+
     setTimeout(() => {
       this.fetching = false;
       this.menu = menuFetchedFromBack;
