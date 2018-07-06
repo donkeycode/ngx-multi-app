@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
 }
+
 .header { background-color: #96ceb4; }
 .menu { background-color: #ff6f69; }
 .content { background-color: #ffcc5c; }
@@ -80,13 +81,13 @@ html, body {
     background-position: 208px; } }
 
 
-        a {
-          text-decoration: none;
-          display: block;
-          margin: 15px auto;
-          border: 2px solid #96ceb4;
-          border-radius: 10px;
-          width: 80%;
-          color: black;
-          padding: 10px 0;
-        }
+a {
+  text-decoration: none;
+  display: block;
+  margin: 15px auto;
+  border: 2px solid #96ceb4;
+  border-radius: 10px;
+  width: 80%;
+  color: black;
+  padding: 10px 0;
+}
