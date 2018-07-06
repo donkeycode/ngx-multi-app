@@ -6,8 +6,8 @@
   <base href="/app1/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="http://localhost/grid.css">
+  <script src="http://localhost/elements.js"></script>
 </head>
 <body>
   <app-root>
@@ -15,41 +15,12 @@
       <div class="header">
       </div>
       <div class="menu">
+        <layout-menu links='[{"loading":true},{"loading":true}]'></layout-menu>
       </div>
       <div class="content">
         <h1>1. Loading Angular App 1</h1>
       </div>
     </div>
-    <script>
-    function init() {
-      let storedData = localStorage.getItem('multi-app');
-      if (!storedData) {
-        let newHtml = '';
-        newHtml += '<div class="post">';
-          newHtml += '<div class="avatar"></div>';
-          newHtml += '<div class="line"></div>';
-          newHtml += '<div class="line"></div>';
-        newHtml += '</div>';
-        newHtml += '<div class="post">';
-          newHtml += '<div class="avatar"></div>';
-          newHtml += '<div class="line"></div>';
-          newHtml += '<div class="line"></div>';
-        newHtml += '</div>';
-        document.getElementsByClassName('menu')[0].innerHTML = newHtml;
-        return;
-      }
-      storedData = JSON.parse(storedData);
-
-      let newHtml = '';
-      for (let link of storedData.data.menu) {
-        newHtml += '<div>';
-        newHtml += '<a href="' + link.link + '">' + link.label + '</a>';
-        newHtml += '</div>';
-      }
-      document.getElementsByClassName('menu')[0].innerHTML = newHtml;
-    }
-    init();
-    </script>
   </app-root>
 </body>
 </html>
