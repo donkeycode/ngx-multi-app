@@ -3,7 +3,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'layout-menu',
   template: `
-    <div *ngFor="let link of _links">
+    <div *ngFor="let link of links">
       <a [attr.href]="link.link" *ngIf="!link.loading">{{ link.label }}</a>
       <div class="post" *ngIf="link.loading">
         <div class="avatar"></div>
@@ -87,28 +87,20 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Native
 })
 export class ButtonComponent {
-  _links: any[] = [];
-
-  @Input()
-  set links(value: string | any[]) {
-    if (localStorage.getItem('multi-app')) {
-      this.getFromStorage();
-      return;
+  @Input() links: any[] = [
+    {
+      loading: true
+    }, {
+      loading: true
     }
+  ];
 
-    if (typeof value === 'string') {
-      this._links = JSON.parse(value);
-    } else {
-      this._links = value;
-    }
-  }
-
-  public getFromStorage(): void {
+  constructor() {
     let storedData: any = localStorage.getItem('multi-app');
     if (!storedData) {
       return;
     }
     storedData = JSON.parse(storedData);
-    this._links = storedData.data.menu;
+    this.links = storedData.data.menu;
   }
 }
